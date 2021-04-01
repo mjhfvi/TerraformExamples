@@ -1,0 +1,16 @@
+  provisioner "remote-exec" {
+    connection {
+    host                          = azurerm_windows_virtual_machine.main.public_ip_address
+    type                          = "winrm"
+    port                          = 5985
+    https                         = false
+    timeout                       = "2m"
+    user                          = "${var.user}"
+    password                      = "${var.password}"
+  }
+
+  inline = [
+    "powershell.exe -ExecutionPolicy Unrestricted -Command {Install-WindowsFeature -name Web-Server -IncludeManagementTools}",
+    ]
+  }
+}
