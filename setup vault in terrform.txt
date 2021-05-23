@@ -5,12 +5,17 @@
 vault secrets enable aws
 
 vault write aws/config/root \
-    access_key= \
-    secret_key= \
-    region=eu-central-1
+    access_key=""\
+    secret_key=""\
+    lease_duration="5m" \
+    region="eu-central-1"
+
+vault write aws/config/lease lease=1h lease_max=1h
+
+vault read aws/config/root 
 
 	
-vault write aws/roles/ec2-admin-role \
+vault write aws/roles/my-role \
     credential_type=iam_user \
     policy_document=-<<EOF
 {
