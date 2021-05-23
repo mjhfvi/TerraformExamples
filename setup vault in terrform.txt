@@ -1,0 +1,90 @@
+# source: https://medium.com/@mitesh_shamra/terraform-security-using-vault-ed0fa1db4e09
+# source: https://austincloud.guru/2020/11/05/using-vault-to-get-aws-credentials/
+
+# setup role aws in vault 
+vault secrets enable aws
+
+vault write aws/config/root \
+    access_key= \
+    secret_key= \
+    region=eu-central-1
+
+	
+vault write aws/roles/ec2-admin-role \
+    credential_type=iam_user \
+    policy_document=-<<EOF
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": "ec2:*",
+      "Resource": "*"
+    }
+  ]
+}
+EOF	
+
+
+# setup vault aws login credentials in terraform
+
+provider "vault" {
+ address 					= "https://192.168.50.81:8200"
+ token 						= ""
+}
+
+data "vault_aws_access_credentials" "creds" {
+  backend 					= "aws"
+  role    					= "ec2-admin-role"
+}
+
+provider "aws" {
+  access_key 				= "${data.vault_aws_access_credentials.creds.access_key}"
+  secret_key 				= "${data.vault_aws_access_credentials.creds.secret_key}"
+  region  					= "${var.region}"
+}
+
+# generally, these blocks would be in a different module
+data "vault_aws_access_credentials" "creds" {
+  backend = "${vault_aws_secret_backend.aws.path}"
+  role    = "${vault_aws_secret_backend_role.role.name}"
+}
+
+provider "aws" {
+  access_key = "${data.vault_aws_access_credentials.creds.access_key}"
+  secret_key = "${data.vault_aws_access_credentials.creds.secret_key}"
+}
+
+## This File Contain Variable Information ##
+
+# Access Information, instance.tf
+variable "aws_access_key" {
+  default                       = ""
+  description                   = "AWS Access Key Id"
+}
+
+
+# setup vault in terraform with resource
+
+resource "vault_aws_secret_backend" "aws" {
+  access_key = ""
+  secret_key = ""
+}
+
+resource "vault_aws_secret_backend_role" "role" {
+  backend = "${vault_aws_secret_backend.aws.path}"
+  name    = "test"
+
+  policy = <<EOT
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": "*",
+      "Resource": "*"
+    }
+  ]
+}
+EOT
+}
