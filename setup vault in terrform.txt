@@ -23,7 +23,10 @@ vault write aws/roles/my-role \
   "Statement": [
     {
       "Effect": "Allow",
-      "Action": "ec2:*",
+      "Action": [
+        "iam:*",
+        "ec2:*"
+      ],
       "Resource": "*"
     }
   ]
