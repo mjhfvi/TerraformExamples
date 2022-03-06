@@ -1,4 +1,4 @@
-# testing
+# terraform script
 
 terraform {
   required_providers {
