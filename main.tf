@@ -1,4 +1,4 @@
-# terraform script
+# terraform
 
 terraform {
   required_providers {
