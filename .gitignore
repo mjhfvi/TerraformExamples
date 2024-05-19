@@ -1,2 +1,6 @@
-variables.tf
+*.gob
+*.tfvar
 aws/my-key-testing.pem
+.infracost/*
+manifest-*
+tzahi_cohen_aws_root_access.txt
