@@ -1,11 +1,12 @@
+---
   connection {
-    host     = azurerm_public_ip.win_pubip.fqdn
+    host     = "azurerm_public_ip.win_pubip.fqdn"
     type     = "winrm"
     port     = 5985
     https    = false
     timeout  = "10m"                                                  # Will Time Out the Process
-    user     = "adminuser"
-    password = "P@ssw0rd1234!"
+    user     = "admin"
+    password = "Pssw0rd1234"
   }
 
   provisioner "file" {
@@ -15,23 +16,14 @@
 
   provisioner "remote-exec" {
     inline = [
-      "PowerShell.exe -ExecutionPolicy Bypass d:\\terraform\\config.ps1",
+      "PowerShell.exe -ExecutionPolicy Bypass d:\\terraform\\config.ps1"
     ]
   }
-  
-  
-
-
-
-
-
 
   provisioner "remote-exec" {
     inline = [
-	   "PowerShell.exe choco install -y git.install",
-       "PowerShell.exe choco install -y winscp",
-       "PowerShell.exe choco install -y notepadplusplus.install",
+      "PowerShell.exe choco install -y git.install",
+      "PowerShell.exe choco install -y winscp",
+      "PowerShell.exe choco install -y notepadplusplus.install",
     ]
   }
-  
-  

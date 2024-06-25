@@ -15,6 +15,3 @@ Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManage
 
 choco install git -y
 choco install googlechrome -y
-
-
-

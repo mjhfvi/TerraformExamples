@@ -1,3 +1,4 @@
+---
   connection {
     host     = azurerm_public_ip.win_pubip.fqdn
     type     = "winrm"
@@ -18,20 +19,11 @@
       "PowerShell.exe -ExecutionPolicy Bypass d:\\terraform\\config.ps1",
     ]
   }
-  
-  
-
-
-
-
-
 
   provisioner "remote-exec" {
     inline = [
-	   "PowerShell.exe choco install -y git.install",
+     "PowerShell.exe choco install -y git.install",
        "PowerShell.exe choco install -y winscp",
        "PowerShell.exe choco install -y notepadplusplus.install",
     ]
   }
-  
-  

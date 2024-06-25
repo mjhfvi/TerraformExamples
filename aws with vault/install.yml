@@ -5,15 +5,10 @@
   become: true
   tasks:
 
-
-
-
-
-
- # - name: Update all packages to their latest version
- #   apt:
- #     name: "*"
- #     state: latest
+#  - name: Update all packages to their latest version
+#    apt:
+#      name: "*"
+#      state: latest
 
   - name: Add Hashicorp Official GPG key
     shell: curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo apt-key add -
@@ -24,7 +19,7 @@
     apt_key:
       url: https://download.docker.com/linux/ubuntu/gpg
       state: present
-        
+
   - name: Download Nomad Job File
     shell: wget https://raw.githubusercontent.com/mjhfvi/Ansible-Examples/main/aws/nginx.nomad
     args:
@@ -42,9 +37,9 @@
     become: true
     become_user: root
     apt:
-      update_cache: yes
+      update_cache: true
 
-  - name: Update APT and Install Nomad, Consul, Docker Packages 
+  - name: Update APT and Install Nomad, Consul, Docker Packages
     apt:
       pkg:
       - consul
@@ -52,14 +47,14 @@
       - docker-ce
       - python3
       - python3-pip
- 
+
   - name: Install Docker Module for Python
     pip:
-      name: 
+      name:
       - docker-py
       - python-nomad
 
-  - name: Start nomad Service 
+  - name: Start nomad Service
     ansible.builtin.service:
      name: nomad
      state: started
@@ -70,4 +65,4 @@
 
   - name: Run Nomad Job
     shell: nomad run nginx.nomad
-    ignore_errors: True
+    ignore_errors: true

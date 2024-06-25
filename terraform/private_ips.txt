@@ -1,3 +1,3 @@
-win-08t143244z.westeurope.cloudapp.azure.com 
-example-anos.westeurope.cloudapp.azure.com 
-example-anos.westeurope.cloudapp.azure.com 
+win-08t143244z.westeurope.cloudapp.azure.com
+example-anos.westeurope.cloudapp.azure.com
+example-anos.westeurope.cloudapp.azure.com

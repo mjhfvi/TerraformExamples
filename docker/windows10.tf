@@ -19,9 +19,9 @@ terraform {
 provider "docker" {
   host = "tcp://localhost:2375"
 
-# Configure Registry #
+  # Configure Registry #
   registry_auth {
-    address = "qregistry.hub.docker.com"
+    address  = "qregistry.hub.docker.com"
     username = "mjhfvi"
     password = ""
   }
@@ -37,8 +37,8 @@ resource "docker_image" "windows" {
 # Create a docker container resource
 # -> same as 'docker run --name windows10 -d mcr.microsoft.com/windows:20H2'
 resource "docker_container" "windows" {
-  name    = "windows10"
-  image   = "mcr.microsoft.com/windows:20H2"
+  name  = "windows10"
+  image = "mcr.microsoft.com/windows:20H2"
 }
 
 # Create a new docker network
@@ -50,11 +50,11 @@ resource "docker_network" "private_network" {
 
 
 output "Public_fqdn_Address" {
-  value                             = docker_container.windows.ip_address
-  description                       = "Output -Fully Qualified Domain Name- Information to Terminal"
+  value       = docker_container.windows.ip_address
+  description = "Output -Fully Qualified Domain Name- Information to Terminal"
 }
 
 output "Public_fqdn_Address" {
-  value                             = docker_container.windows.ip_address
-  description                       = "Output -Fully Qualified Domain Name- Information to Terminal"
+  value       = docker_container.windows.ip_address
+  description = "Output -Fully Qualified Domain Name- Information to Terminal"
 }

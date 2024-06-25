@@ -8,7 +8,7 @@ Get-NetConnectionProfile |
     $_
     $_|Set-NetConnectionProfile -NetWorkCategory Private -Confirm
   }
-  
+
 Write-Host "Create a new WinRM listener and configure"
 winrm create winrm/config/listener?Address=*+Transport=HTTP
 winrm set winrm/config/winrs '@{MaxMemoryPerShellMB="0"}'
@@ -31,5 +31,3 @@ Stop-Service -Name WinRM
 Set-Service -Name WinRM -StartupType Automatic
 netsh advfirewall firewall set rule name="Windows Remote Management (HTTP-In)" new action=allow localip=any remoteip=any
 Start-Service -Name WinRM
-
-

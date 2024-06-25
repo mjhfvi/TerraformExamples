@@ -1,0 +1,44 @@
+fileignoreconfig:
+- filename: .secrets.baseline
+  checksum: 160917df74153a885459ed839d69c0e0c7301671204db452d0a03d9019bb98c8
+- filename: azure/win10 winrm open/files/config.ps1
+  checksum: 2f0ff2b54d6eb96e752e0cb3306767069f02d020252d04b412410afe1e1f7638
+- filename: terraform/files/config.ps1
+  checksum: 21e001b5e7269cd34c15d2d5da24737a49c48398c2906485c3fd45228dd9a98e
+- filename: .gitleaksignore
+  checksum: a614103da82f987e6ce9a968122ee7a8deade98ca170a560484d6dbd45e797bb
+- filename: .gitleaks.toml
+  checksum: 877499965e8a9209b7643b669fd6b835cc95fd5e3ad599aa6e53c09d036a8dbd
+- filename: .yamllint
+  checksum: a0a0afc41e26806b7f7c12aa8403ffc72f1e22206cc7b4c49f3f507dcb830304
+- filename: aws with vault/execution.tf
+  checksum: eab9c151b8f4cf1a6c9cd67da16c0241998f4886c621694473297394e8e613fb
+- filename: aws with vault/instance.tf
+  checksum: d5a365004690c03a8f89807022d6002b212a9cf520f12a936595c0ccb2a3647b
+- filename: aws with vault/notification.tf
+  checksum: e30f7732e3242a8e8f2a409d0912d8bcd64da52d3709b2297ae65bb32bcfc9ba
+- filename: aws with vault/security.tf
+  checksum: f089f299ea810cd46610d3089246667f164e36a080adb3a02945c3f4f196fd89
+- filename: aws/execution.tf
+  checksum: ac12d82a1c932ee346e37e61266d5d272e12098db4e1726eb367d6013b171c00
+- filename: aws/instance.tf
+  checksum: 1d81fb98a745316b9a3efc54d5a4f65a0212ab11b16cfb40537130479b8402c8
+- filename: aws/notification.tf
+  checksum: 1b1723450d445ce42dc84788e717462fc04d95374bf529e316bd369e9332755c
+- filename: aws/security.tf
+  checksum: 9d9c819ba461e55f2580a4883697b7852cc242aae101306ff6f63c3a7eea656a
+- filename: azure/VM_Count/WindowsServer.tf
+  checksum: 027e9d561589d33b2b6a75056d271630847c330983f962a05176c2f057b0dac9
+- filename: azure/win10 winrm open/BuildSetup/winrm-testing.yml
+  checksum: 83e853947d435b239428e06791e6ba46bf186b7f533c0cd23cf1260567dce706
+- filename: remote-exec example.txt
+  checksum: f6a9d886d9aa67a884f1f443d4c5defae16b0b36c33c5d781d91d565d21084fb
+- filename: azure/main.tf
+  checksum: 06da9b0ae34ce5c8d3e329f55e294ce6bcdac97449ea5cc817ec5f3f86753bbc
+- filename: azure/win10 winrm open/Windows10VMr.tf
+  checksum: f00485a86bd01c17d3461fa11fc9230dd7c9402ab31c356fb447b027d41ad4be
+- filename: terraform/Windows10VMr.tf
+  checksum: de2521adad42943d07dddefb988d07288455ae5aaa9868268256c2a5da786b01
+- filename: main.tf
+  checksum: d04049716b96d848d6cf0ff59e127054807d8ca207aa2328ad8354f7e9ade6f7
+version: ""

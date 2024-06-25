@@ -1,16 +1,16 @@
 ## This File Contain Execute Commands ##
- 
-# Check if the VM is Ready to Start Execute a Command 
+
+# Check if the VM is Ready to Start Execute a Command
 resource "null_resource" "instance_check" {
   provisioner "remote-exec" {
     connection {
-      host                      = aws_instance.my_instance.public_ip
-      user                      = var.aws_ami_user
-      private_key               = "${file(var.ssh_key)}"
-      timeout                   = "1m"
+      host        = aws_instance.my_instance.public_ip
+      user        = var.aws_ami_user
+      private_key = file(var.ssh_key)
+      timeout     = "1m"
     }
-    inline                      = ["echo 'SSH Connection Check Complete...'"]
-    on_failure                  = continue
+    inline     = ["echo 'SSH Connection Check Complete...'"]
+    on_failure = continue
   }
 }
 
@@ -28,7 +28,7 @@ resource "null_resource" "instance_check" {
 
 
 
-  
+
 #resource "null_resource" "sleep" {
 #  provisioner "local-exec" {
 #    command                    = "sleep 15"
