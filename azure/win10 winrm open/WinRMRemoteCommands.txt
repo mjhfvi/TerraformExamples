@@ -1,4 +1,0 @@
-$ipaddr = "win-08t143244z.westeurope.cloudapp.azure.com"
-$username = "labadmin"
-
-Enter-PSSession $ipaddr -Credential $username

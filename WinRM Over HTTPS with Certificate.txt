@@ -4,7 +4,7 @@
 New-NetFirewallRule -DisplayName "Windows Remote Management (HTTPS-In)" -Name "Windows Remote Management (HTTPS-In)" -Profile Any -LocalPort 5986 -Protocol TCP
 
 # run on the remote server you need access
-$ServerName = 'DESKTOP-QVI1MPR'
+$ServerName = 'localhost'
 $NewServerCertificate = New-SelfSignedCertificate -Subject CN=$ServerName -TextExtension '2.5.29.37={text}1.3.6.1.5.5.7.3.1'
 
 # Create Listener on Server, get the ThumbPrint from the New Certificate

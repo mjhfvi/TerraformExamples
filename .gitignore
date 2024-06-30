@@ -1,21 +1,7 @@
 *.gob
 *.tfvar
-aws/my-key-testing.pem
 .infracost/*
-manifest-*
-tzahi_cohen_aws_root_access.txt
-aws/.terraform/*
-aws with vault/.terraform/*
-azure/.terraform/*
-azure/VM_Count/.terraform.lock.hcl
-azure/VM_Count/.terraform/*
-azure/win10 winrm open/.terraform.lock.hcl
-azure/win10 winrm open/.terraform/*
-terraform/.terraform/*
-without_variable/.terraform.lock.hcl
-without_variable/.terraform/*
-terraform/terraform.tfstate
-terraform/terraform.tfstate.backup
-aws/.terraform.lock.hcl
-aws with vault/.terraform.lock.hcl
-terraform/.terraform.lock.hcl
+*/.terraform/*
+*/secret.tfvars
+*/terraform.tfstate
+*/.terraform.lock.hcl
