@@ -16,12 +16,6 @@ variable "aws_region" {
   default     = "il-central-1" # us-east-1
 }
 
-variable "aws_region" {
-  description = "The AWS region"
-  type        = string
-  default     = "il-central-1" # us-east-1
-}
-
 variable "aws_user_name" {
   description = "The AWS user name"
   type        = string

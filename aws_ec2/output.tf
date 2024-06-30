@@ -23,3 +23,7 @@ output "availability_zone" {
 #   description = "public_ip"
 #   value       = aws_instance.main[count.index]
 # }
+
+output "test" {
+  value = try(aws_subnet.main.availability_zone, "default")
+}
