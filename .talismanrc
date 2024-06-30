@@ -1,8 +1,6 @@
 fileignoreconfig:
-- filename: aws_basic/instance.tf
-  checksum: bf6ccaad754b3f36d2aaeafb769e1f64aab116b63b51277c31cfc98509cd502b
-- filename: aws_basic/README.md
-  checksum: 928904a646084d6f7b4f7001fefdad21f66650ed92a7ccba6fc5033276b8697a
-- filename: aws_basic/provider.tf
-  checksum: 3b2777f11199c8eb586e13be037b847acc10b97c8b248e115a2e31db28462876
+- filename: aws_eks/README.md
+  checksum: e050c24bae3a1ec285f5316cbee64f98ab11cc1e903dabeea28065919ededcf7
+- filename: aws_eks/providers.tf
+  checksum: 31040a852c4bc6eb1975c4c9c215d94c0e107352c61d0405847cb192884afdb6
 version: ""
