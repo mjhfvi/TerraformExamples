@@ -5,3 +5,5 @@
 */secret.tfvars
 */terraform.tfstate
 */.terraform.lock.hcl
+*/tfplan
+*/terraform.tfstate.backup

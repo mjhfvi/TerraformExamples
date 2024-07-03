@@ -1,11 +1,16 @@
 {
   "dictionaries": [],
   "dictionaryDefinitions": [],
+  "enableFiletypes": [
+    "!terraform"
+  ],
   "ignorePaths": [],
   "ignoreWords": [],
   "import": [],
   "version": "0.2",
   "words": [
-    "gitleaksignore"
+    "gitleaksignore",
+    "tfstate",
+    "tfvars"
   ]
 }
