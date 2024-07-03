@@ -1,14 +1,14 @@
-resource "aws_security_group" "default" {
-  name        = "sg_default"
-  description = "allow access to ssh, http"
+resource "aws_security_group" "http" {
+  name        = "sg_http"
+  description = "allow access to http"
   vpc_id      = aws_vpc.main.id
 
-  ingress {
-    from_port   = 22
-    to_port     = 22
-    protocol    = "tcp"
-    cidr_blocks = [var.office_public_ip]
-  }
+  # ingress {
+  #   from_port   = 22
+  #   to_port     = 22
+  #   protocol    = "tcp"
+  #   cidr_blocks = [var.office_public_ip]
+  # }
 
   ingress {
     from_port   = 80
@@ -23,6 +23,10 @@ resource "aws_security_group" "default" {
     protocol    = "-1"
     cidr_blocks = ["0.0.0.0/0"]
   }
+
+  tags = {
+    Name = "sg_alb_allow_http"
+  }
 }
 
 resource "aws_security_group" "ssh" {
@@ -36,11 +40,15 @@ resource "aws_security_group" "ssh" {
     protocol    = "tcp"
     cidr_blocks = [var.office_public_ip]
   }
+
+  tags = {
+    Name = "sg_allow_ssh"
+  }
 }
 
-resource "aws_security_group" "elb" {
+resource "aws_security_group" "lb" {
   name        = "sg_elb"
-  description = "allow access to elb on http"
+  description = "allow access to lb on http"
   vpc_id      = aws_vpc.main.id
 
   ingress {
@@ -58,4 +66,8 @@ resource "aws_security_group" "elb" {
   }
 
   depends_on = [aws_internet_gateway.main]
+
+  tags = {
+    Name = "sg_alb_allow_http"
+  }
 }

@@ -38,11 +38,11 @@ variable "aws_region" {
 variable "ec2_instance_count" {
   description = "Instance Count"
   type        = number
-  default     = "2"
+  default     = "1"
 
   validation {
-    condition     = var.ec2_instance_count >= 2 || var.ec2_instance_count >= 4
-    error_message = "you must have at least 2, and no more then 4 EC2 instances"
+    condition     = var.ec2_instance_count >= 1 || var.ec2_instance_count >= 4
+    error_message = "you must have at least 1, and no more then 4 EC2 instances"
   }
 }
 
@@ -55,6 +55,13 @@ variable "ec2_instance_type" {
     condition     = length(var.ec2_instance_type) > 0 && substr(var.ec2_instance_type, 0, 8) == "t3.micro"
     error_message = "The instance_type Value Must be a General Purpose Instance T(Tiny/Turbo) Type, Compute Type \"nano\"."
   }
+}
+
+variable "ec2_instance_associate_public_ip_address" {
+  description = "Instance Allow Public IP Address"
+  type        = string
+  default     = "true"
+
 }
 
 ########### Network Information ###########
@@ -70,16 +77,28 @@ variable "subnet_cidr_block_default" {
   default     = "10.0.0.0/16"
 }
 
-variable "subnet_cidr_block_public" {
+variable "subnet_cidr_block_public_a" {
   description = "Public Subnet CIDR Block"
   type        = string
   default     = "10.0.1.0/24"
 }
 
-variable "subnet_cidr_block_private" {
+variable "subnet_cidr_block_public_b" {
+  description = "Public Subnet CIDR Block"
+  type        = string
+  default     = "10.0.2.0/24"
+}
+
+variable "subnet_cidr_block_private_a" {
   description = "Private Subnet CIDR Block"
   type        = string
   default     = "10.0.3.0/24"
+}
+
+variable "subnet_cidr_block_private_b" {
+  description = "Private Subnet CIDR Block"
+  type        = string
+  default     = "10.0.4.0/24"
 }
 
 variable "aws_availability_zone_public" {
@@ -91,7 +110,7 @@ variable "aws_availability_zone_public" {
 variable "aws_availability_zone_private" {
   description = "Private Availability Zone"
   type        = string
-  default     = "eu-west-1a"
+  default     = "eu-west-1b"
 }
 
 ########### S3 Logs Configuration ###########
