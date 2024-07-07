@@ -9,7 +9,7 @@ resource "aws_lb" "main" {
   # enable_deletion_protection = true
 
   # access_logs {
-  #   bucket  = aws_s3_bucket.lb_log_bucket.id
+  #   bucket  = aws_s3_bucket.lb_log_bucket[0].id
   #   prefix  = "logs-lb"
   #   enabled = true
   # }

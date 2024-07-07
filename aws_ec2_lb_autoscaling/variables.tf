@@ -157,16 +157,10 @@ variable "create_asg" {
 }
 
 ########### S3 Bucket Logs Creation ###########
-variable "s3_bucket" {
-  description = "Configure S3 Bucket for Logs"
+variable "create_s3" {
+  description = "Create S3 Bucket for Load Balancing Logs"
   type        = bool
   default     = true
-}
-
-variable "s3_count" {
-  description = "Configure S3 Bucket, Use 0 to Disable"
-  type        = number
-  default     = "0"
 }
 
 ########### Templates ###########
