@@ -68,7 +68,7 @@ variable "office_public_ip" {
   default     = "84.108.152.39/32"
 }
 
-########### Instance Certificates and Passwords ###########
+########### Instance Certificates and Passwords Creation ###########
 variable "ec2_access_ssh_key" {
   description = "SSH Certificate Key"
   type        = string
@@ -139,24 +139,24 @@ variable "subnet_cidr_block_private" {
 variable "create_lb" {
   description = "A boolean to decide whether to create Application Load Balancing"
   type        = bool
-  default     = false
+  default     = true
 }
 
 variable "configure_lb" {
   description = "configure Network Load Balancing as Application or Network"
   type        = string
-  default     = "application"
-  # default     = "network"
+  # default     = "application"
+  default = "network"
 }
 
-########### Autoscaling Creation ###########
+########### Autoscaling Group Creation ###########
 variable "create_asg" {
   description = "A boolean to decide whether to create autoscaling"
   type        = bool
-  default     = false
+  default     = true
 }
 
-########### S3 Logs Configuration ###########
+########### S3 Bucket Logs Creation ###########
 variable "s3_bucket" {
   description = "Configure S3 Bucket for Logs"
   type        = bool

@@ -5,8 +5,7 @@ output "aws_availability_zone" {
 
 output "iam_management" {
   description = "Identity and Access Management"
-  # value       = try(data.aws_caller_identity.current.arn, data.aws_caller_identity.current.account_id, data.aws_caller_identity.current.user_id, null)
-  value = try(data.aws_caller_identity.current[*], null)
+  value       = try(data.aws_caller_identity.current[*], null)
 }
 
 output "vpc_id" {
@@ -20,9 +19,13 @@ output "ec2_instance_type" {
 }
 
 output "ec2_instance_public_information" {
-  description = "EC2 instance Public IPs"
-  value       = [try(aws_instance.frontend["subnet_public_a"].public_ip, aws_instance.frontend["subnet_public_a"].public_dns, null)]
-  # value       = try(aws_instance.main_a[0].public_ip, aws_instance.main_b[0].public_ip, null)
+  description = "EC2 instance Public IPs and DNS information"
+  value = [
+    aws_instance.frontend["frontend_a"].public_ip,
+    aws_instance.frontend["frontend_a"].public_dns,
+    aws_instance.frontend["frontend_b"].public_ip,
+    aws_instance.frontend["frontend_b"].public_dns
+  ]
 }
 
 output "network_cidr_block" {
