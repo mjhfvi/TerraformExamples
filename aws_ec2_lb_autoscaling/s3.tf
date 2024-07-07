@@ -5,14 +5,14 @@ resource "aws_s3_bucket" "lb_log_bucket" {
 
 resource "aws_s3_bucket_acl" "log_bucket_acl" {
   count  = var.create_s3 ? 1 : 0
-  bucket = aws_s3_bucket.lb_log_bucket.id
+  bucket = aws_s3_bucket.lb_log_bucket[0].id
   acl    = "log-delivery-write"
 }
 
-resource "aws_s3_bucket_logging" "lb-logs" {
+resource "aws_s3_bucket_logging" "lb_logs" {
   count  = var.create_s3 ? 1 : 0
-  bucket = aws_s3_bucket.lb-logs.id
+  bucket = aws_s3_bucket.lb_log_bucket[0].id
 
-  target_bucket = aws_s3_bucket.lb_log_bucket.id
+  target_bucket = aws_s3_bucket.lb_log_bucket[0].id
   target_prefix = "log/"
 }
