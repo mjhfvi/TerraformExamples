@@ -1,61 +1,14 @@
-resource "aws_security_group" "http" {
-  name        = "sg_http"
-  description = "allow access to http"
-  vpc_id      = aws_vpc.main.id
-
-  # ingress {
-  #   from_port   = 22
-  #   to_port     = 22
-  #   protocol    = "tcp"
-  #   cidr_blocks = [var.office_public_ip]
-  # }
-
-  ingress {
-    from_port   = 80
-    to_port     = 80
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-
-  egress {
-    from_port   = 0
-    to_port     = 0
-    protocol    = "-1"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-
-  tags = {
-    Name = "sg_alb_allow_http"
-  }
-}
-
-resource "aws_security_group" "ssh" {
-  name        = "sg_ssh"
-  description = "allow access to opnessh on ssh"
+resource "aws_security_group" "sg" {
+  for_each    = var.aws_security_group_template
+  name        = "sg_${each.value.name}"
+  description = "allow access to ${each.value.name}"
   vpc_id      = aws_vpc.main.id
 
   ingress {
-    from_port   = 22
-    to_port     = 22
-    protocol    = "tcp"
-    cidr_blocks = [var.office_public_ip]
-  }
-
-  tags = {
-    Name = "sg_allow_ssh"
-  }
-}
-
-resource "aws_security_group" "lb" {
-  name        = "sg_elb"
-  description = "allow access to lb on http"
-  vpc_id      = aws_vpc.main.id
-
-  ingress {
-    from_port   = 80
-    to_port     = 80
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
+    from_port   = each.value.from_port
+    to_port     = each.value.to_port
+    protocol    = each.value.protocol
+    cidr_blocks = [each.value.cidr_blocks]
   }
 
   egress {
@@ -68,6 +21,6 @@ resource "aws_security_group" "lb" {
   depends_on = [aws_internet_gateway.main]
 
   tags = {
-    Name = "sg_alb_allow_http"
+    Name = "sg_allow_${each.value.name}"
   }
 }
