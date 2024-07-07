@@ -8,4 +8,4 @@
 */tfplan
 */terraform.tfstate.backup
 */.terraform.tfstate.lock.info
-aws_ec2_lb_autoscaling/elb.tf.backup
+*/elb.tf.backup
