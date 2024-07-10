@@ -1,35 +1,41 @@
-resource "aws_autoscaling_group" "main" {
-  count               = var.create_asg ? 1 : 0
-  name                = "autoscaling_group"
-  desired_capacity    = 2
-  max_size            = 5
-  min_size            = 2
-  vpc_zone_identifier = [for i in aws_subnet.public_subnets[*] : i.id]
-  target_group_arns   = [try(aws_lb_target_group.alb_target_group_http[0].arn, aws_lb_target_group.nlb_target_group_http[0].arn, null)]
+resource "aws_autoscaling_group" "frontend" {
+  count            = var.create_asg == true ? 1 : 0
+  name             = "autoscaling_group_frontend"
+  desired_capacity = 2
+  max_size         = 3
+  min_size         = 2
+  vpc_zone_identifier = [for key in aws_subnet.public_subnets[*] : key.id]
+  # target_group_arns   = [for key in aws_lb_target_group.target_group[*] : key.arn]
+  target_group_arns   = [aws_lb_target_group.target_group["22"].arn, aws_lb_target_group.target_group["80"].arn]
 
   launch_template {
-    id      = aws_launch_template.instance_launch_template[0].id
-    version = aws_launch_template.instance_launch_template[0].latest_version
+    id      = try(aws_launch_template.instance_launch_template[0].id, null)
+    version = try(aws_launch_template.instance_launch_template[0].latest_version, null)
   }
 }
 
 resource "aws_launch_template" "instance_launch_template" {
-  count         = var.create_asg ? 1 : 0
-  name          = "instance_launch_template"
-  image_id      = data.aws_ami.ubuntu_image.id
+  count         = var.create_asg == true ? 1 : 0
+  name          = "autoscaling_template_frontend"
+  description = "aws launch template for autoscaling frontend"
+  image_id      = try(data.aws_ami.ubuntu_image.id, null)
   instance_type = var.ec2_instance_type
+  key_name      = aws_key_pair.ssh_login_access_key.key_name # try(data.aws_key_pair.available.key_name, null)
+  user_data     = filebase64("${path.module}/ec2_instance_init.sh")
 
   network_interfaces {
-    device_index    = 0
-    security_groups = [aws_security_group.sg["http"].id, aws_security_group.sg["https"].id, aws_security_group.sg["ssh"].id]
+    device_index = 0
+    associate_public_ip_address = true
+    security_groups = [aws_security_group.sg["instance-http"].id, aws_security_group.sg["instance-ssh"].id]
   }
 
   tag_specifications {
     resource_type = "instance"
 
     tags = {
-      Name = "instance_launch_template"
+      Name = "autoscaling_frontend_${count.index}"
     }
   }
-  # user_data = var.ec2_instance_user_data
 }
+
+################ Backend ################

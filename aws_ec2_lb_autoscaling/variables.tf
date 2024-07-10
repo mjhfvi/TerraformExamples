@@ -82,6 +82,12 @@ variable "ec2_root_password" {
 }
 
 ########### Instance Creation ###########
+variable "create_instance" {
+  description = "A boolean to decide whether to create Instances"
+  type        = bool
+  default     = false
+}
+
 variable "ec2_instance_count" {
   description = "Instance Count"
   type        = number
@@ -98,23 +104,23 @@ variable "ec2_instance_type" {
   type        = string
   default     = "t3.micro" # t3.micro
 
-  validation {
-    condition     = length(var.ec2_instance_type) > 0 && substr(var.ec2_instance_type, 0, 8) == "t3.micro"
-    error_message = "The instance_type Value Must be a General Purpose Instance T(Tiny/Turbo) Type, Compute Type \"nano\"."
-  }
+  #   validation {
+  #     condition     = length(var.ec2_instance_type) > 0 && substr(var.ec2_instance_type, 0, 8) == "t3.micro"
+  #     error_message = "The instance_type Value Must be a General Purpose Instance T(Tiny/Turbo) Type, Compute Type \"nano\"."
+  #   }
 }
 
-variable "ec2_instance_user_data" {
-  type        = string
-  description = "Run Commands at Instance boot, Logs:  /var/log/cloud-init-output.log"
-  default     = <<-EOF
-    #!/usr/bin/env bash
-    sudo apt update -y
-    sudo apt install nginx -y
-    sudo ufw allow 'Nginx HTTP'
-    sudo ufw enable
-  EOF
-}
+# variable "ec2_instance_user_data" {
+#   type        = string
+#   description = "Run Commands at Instance boot, Logs:  /var/log/cloud-init-output.log"
+#   default     = <<-EOF
+#     #!/usr/bin/env bash
+#     sudo apt update -y
+#     sudo apt install nginx -y
+#     sudo ufw allow 'Nginx HTTP'
+#     sudo ufw enable
+#   EOF
+# }
 
 ########### CIDR Creation ###########
 variable "subnet_cidr_block_default" {
@@ -160,41 +166,5 @@ variable "create_asg" {
 variable "create_s3" {
   description = "Create S3 Bucket for Load Balancing Logs"
   type        = bool
-  default     = true
-}
-
-########### Templates ###########
-variable "aws_security_group_template" {
-  description = "Map of security group configurations"
-  type = map(object({
-    name        = string
-    from_port   = number
-    to_port     = number
-    protocol    = string
-    cidr_blocks = string
-
-  }))
-  default = {
-    "http" = {
-      name        = "http"
-      from_port   = 80
-      to_port     = 80
-      protocol    = "tcp"
-      cidr_blocks = "0.0.0.0/0"
-    },
-    "https" = {
-      name        = "https"
-      from_port   = 443
-      to_port     = 443
-      protocol    = "tcp"
-      cidr_blocks = "0.0.0.0/0"
-    },
-    "ssh" = {
-      name        = "ssh"
-      from_port   = 22
-      to_port     = 22
-      protocol    = "tcp"
-      cidr_blocks = "0.0.0.0/0"
-    }
-  }
+  default     = false
 }

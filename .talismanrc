@@ -1,6 +1,8 @@
 fileignoreconfig:
-- filename: aws_ec2_basic/secret.tfvars
-  checksum: 62a42e725ad1b9b6415f18a8dc34c279b72e348b66f69d646ab31d0ccb2eaafd
-- filename: aws_eks_basic/secret.tfvars
-  checksum: c6ec85ac8913f31403db80575fed93b0456c01573515c374eb34ac4d1fa7844a
+- filename: aws_ec2_lb_autoscaling/autoscaling.tf
+  checksum: dac8ad0a895b50e636cb8275de721f7fa5ae4d5d7e32356a5ba0fed685b4fbc6
+- filename: aws_ec2_lb_autoscaling/keys.tf
+  checksum: 3bfad3ea55f431f2770bdb4a3b9a25c75becbdaab84a2bf89848ee9d029c980b
+- filename: aws_ec2_lb_autoscaling/lb.tf
+  checksum: 55c2961d87d774c738b442fd10a9501d6c96b97de07d6131bc71d5448f290a79
 version: ""

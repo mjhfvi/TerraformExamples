@@ -46,7 +46,7 @@ terraform apply "tfplan"
 
 #### Security ####
 # OpenSSH login Certificate to Instances
-ssh-keygen -t ed25519 -C "Tzahi Cohen SSH Login Key ed25519 with Password" -f ssh_login_key_ed25519 -m PEM -N Password
+ssh-keygen -t ed25519 -C "Tzahi Cohen SSH Login Key ed25519 with Password" -f ssh_login_key_ed25519 -N Password
 
 Don`t commit files to git (use .gitignore)
 .tfvars, .tfstate, .tfplan
