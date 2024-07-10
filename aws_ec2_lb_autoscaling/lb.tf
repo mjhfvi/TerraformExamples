@@ -4,7 +4,7 @@ resource "aws_lb" "main" {
   internal           = false
   load_balancer_type = var.configure_lb
   # security_groups    = try(data.aws_security_groups.lb.ids, null)
-  security_groups    = [aws_security_group.sg["lb-http"].id, aws_security_group.sg["lb-ssh"].id]
+  security_groups    = [aws_security_group.sg_lb.id]
   subnets            = [aws_subnet.public_subnets[0].id, aws_subnet.public_subnets[1].id, aws_subnet.public_subnets[2].id]
   # subnets            = try([for key in aws_subnet.public_subnets[*] : key.id], null)
 
@@ -38,25 +38,6 @@ resource "aws_lb_listener" "listener" {
     target_group_arn = try(aws_lb_target_group.target_group[each.key].arn, null)
   }
 }
-
-# resource "aws_lb_target_group" "target_group_ssh" {
-#   name     = "lb-target-group-ssh"
-#   port     = 22
-#   protocol = "TCP"
-#   vpc_id   = try(data.aws_vpc.current.id, null)
-# }
-
-# resource "aws_lb_listener" "listener_ssh" {
-#   # load_balancer_arn = try(data.aws_lb.available.arn, null)
-#   load_balancer_arn = aws_lb.main[0].arn
-#   port              = 22
-#   protocol          = "TCP"
-
-#   default_action {
-#     type             = "forward"
-#     target_group_arn = try(aws_lb_target_group.target_group_ssh.arn, null)
-#   }
-# }
 
 locals {
   ports = {

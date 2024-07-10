@@ -1,8 +1,4 @@
 fileignoreconfig:
-- filename: aws_ec2_lb_autoscaling/autoscaling.tf
-  checksum: dac8ad0a895b50e636cb8275de721f7fa5ae4d5d7e32356a5ba0fed685b4fbc6
-- filename: aws_ec2_lb_autoscaling/keys.tf
-  checksum: 3bfad3ea55f431f2770bdb4a3b9a25c75becbdaab84a2bf89848ee9d029c980b
-- filename: aws_ec2_lb_autoscaling/lb.tf
-  checksum: 55c2961d87d774c738b442fd10a9501d6c96b97de07d6131bc71d5448f290a79
+- filename: aws_ec2_lb_autoscaling/README.md
+  checksum: e354e688141423f4a6eae00f5062e68a5e2ca92077be08150bcb5102fb674571
 version: ""

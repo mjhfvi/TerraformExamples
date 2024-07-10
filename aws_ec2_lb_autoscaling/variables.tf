@@ -75,29 +75,29 @@ variable "ec2_access_ssh_key" {
   sensitive   = true
 }
 
-variable "ec2_root_password" {
-  description = "ec2 Instance Root Password"
-  type        = string
-  sensitive   = true
-}
+# variable "ec2_root_password" {
+#   description = "ec2 Instance Root Password"
+#   type        = string
+#   sensitive   = true
+# }
 
 ########### Instance Creation ###########
-variable "create_instance" {
-  description = "A boolean to decide whether to create Instances"
-  type        = bool
-  default     = false
-}
+# variable "create_instance" {
+#   description = "A boolean to decide whether to create Instances"
+#   type        = bool
+#   default     = false
+# }
 
-variable "ec2_instance_count" {
-  description = "Instance Count"
-  type        = number
-  default     = "1"
+# variable "ec2_instance_count" {
+#   description = "Instance Count"
+#   type        = number
+#   default     = "1"
 
-  validation {
-    condition     = var.ec2_instance_count >= 1 || var.ec2_instance_count >= 4
-    error_message = "you must have at least 1, and no more then 4 EC2 instances"
-  }
-}
+#   validation {
+#     condition     = var.ec2_instance_count >= 1 || var.ec2_instance_count >= 4
+#     error_message = "you must have at least 1, and no more then 4 EC2 instances"
+#   }
+# }
 
 variable "ec2_instance_type" {
   description = "ec2 Instance Types"

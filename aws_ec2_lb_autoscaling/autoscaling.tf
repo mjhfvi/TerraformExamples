@@ -26,7 +26,7 @@ resource "aws_launch_template" "instance_launch_template" {
   network_interfaces {
     device_index = 0
     associate_public_ip_address = true
-    security_groups = [aws_security_group.sg["instance-http"].id, aws_security_group.sg["instance-ssh"].id]
+    security_groups = [aws_security_group.sg_instance.id]
   }
 
   tag_specifications {
