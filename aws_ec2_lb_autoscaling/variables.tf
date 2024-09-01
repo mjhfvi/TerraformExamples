@@ -14,7 +14,7 @@ variable "environment_type" {
 variable "customer_name" {
   description = "Customer Name"
   type        = string
-  default     = "NICE"
+  default     = "compie"
 }
 
 ########### AWS Identity and Access Management ###########

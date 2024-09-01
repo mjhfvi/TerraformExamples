@@ -23,13 +23,13 @@ output "iam_management" {
   value       = try(data.aws_caller_identity.current, null)
 }
 
-output "aws_load_balancers" {
-  value = [data.aws_lb.available.name, data.aws_lb.available.dns_name]
-}
+# output "aws_load_balancers" {
+#   value = [data.aws_lb.available.name, data.aws_lb.available.dns_name]
+# }
 
-output "aws_internet_gateway_default" {
-  value = try(data.aws_internet_gateway.default.id, null)
-}
+# output "aws_internet_gateway_default" {
+#   value = try(data.aws_internet_gateway.default.id, null)
+# }
 
 output "ec2_instance_type" {
   description = "AWS Instance Type"

@@ -1,4 +1,19 @@
+---
 fileignoreconfig:
-- filename: aws_ec2_lb_autoscaling/README.md
-  checksum: e354e688141423f4a6eae00f5062e68a5e2ca92077be08150bcb5102fb674571
+- filename: aws_ec2_lb_autoscaling/dynamodb.tf
+  checksum: 68cbc04c46a7edb8fa174c20ec1a5c3b7189cf89b457ef81586912f2467f7e7f
+- filename: terragrunt/README.md
+  checksum: 2ff756cc6318015bb4bf5495146aceb8fcf86f1fbeefacd10b2c11bfc22e90d0
+- filename: aws_ec2_lb_autoscaling/secretsmanager.tf
+  checksum: 277a8f13290e98313cc231b7ad0db24a0c1187201793d40c3b5992ad9f68c8a0
+- filename: terragrunt/environments/terragrunt.hcl
+  checksum: e523eb47ac5b119dcb4b51750c548b965e268c138799ebe9448e23a4c4b255d6
+- filename: terragrunt/environments/dev/terragrunt.hcl
+  checksum: e40ebede0a09efafe69d88d4308792124eabfd6527d20b470519cad18887eba0
+- filename: terragrunt/environments/prod/terragrunt.hcl
+  checksum: 3e477601af249927b2bab46c7aad1bb3978a7e7153ece0d9c927969ef6574448
+- filename: terragrunt/modules/aws_ec2_basic/instance.tf
+  checksum: 61255f39ef0f6d451aeaf0db1c66bd420b249310317bb21fff849693a50452e4
+- filename: terragrunt/modules/aws_ec2_basic/provider.tf
+  checksum: ec13969daddcefcaa82ca3e585774544724a4c27e01d800eb556dea12035f79b
 version: ""
