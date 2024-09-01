@@ -10,3 +10,4 @@
 **/.terraform.tfstate.lock.info
 */elb.tf.backup
 **/.terragrunt-cache/*
+aws_ec2_lb_autoscaling/secret.tfvars
