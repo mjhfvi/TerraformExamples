@@ -1,0 +1,8 @@
+---
+name: eks-cluster
+runtime: yaml
+resources:
+ cluster:
+   type: eks:Cluster
+outputs:
+ kubeconfig: ${cluster.kubeconfig}
